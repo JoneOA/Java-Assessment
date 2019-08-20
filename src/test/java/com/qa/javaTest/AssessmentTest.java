@@ -67,7 +67,7 @@ public class AssessmentTest {
 		assertEquals("Have you tried applying multiple different conditions?", 1, oe.amISearch("Am I in Amsterdam"));
 		assertEquals("Have you tried applying multiple different conditions?", 2, oe.amISearch("I am in Amsterdam am I?"));
 		assertEquals("Have you tried applying multiple different conditions?",0, oe.amISearch("I have been in Amsterdam"));
-		assertEquals("Have you tried applying multiple different conditions?",5, oe.amISearch("am am am amamam am am amuyg"));
+		assertEquals("Have you tried applying multiple different conditions?",5, oe.amISearch("am am am amamam am am am?"));
 		
 	}
 	

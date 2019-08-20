@@ -1,5 +1,7 @@
 ﻿package com.qa.javaAssessment;
 
+import java.util.ArrayList;
+
 public class Assessment {
 
 	// Given a string, return a string where
@@ -47,7 +49,15 @@ public class Assessment {
 	// evenlySpaced(4, 60, 9) ==> false
 
 	public boolean evenlySpaced(int a, int b, int c) {
-		return false;
+		boolean returnBool = false;
+		
+		if (a - b == c || a - b == -c) {
+			returnBool = true;
+		}
+		else if (a + b == c) {
+			returnBool = true;
+		}	
+		return returnBool;
 	}
 
 	// Given a string and an int n, return a string that removes n letters from the
@@ -60,7 +70,21 @@ public class Assessment {
 	// nMid("Chocolate", 1) ==> "Choclate"
 
 	public String nMid(String input, int a) {
-		return "";
+		int countIn = (input.length() - a) / 2;
+		
+		String output = "";
+		
+		for (int i = 0; i < countIn; i++)
+		{
+			output = output + input.substring(i, i + 1);
+		}
+		
+		for (int j = countIn + a; j < input.length(); j++) {
+			output = output + input.substring(j, j+1);
+		}
+			
+		
+		return output;
 	}
 
 	// Given a string, return the length of the largest "block" in the string.
@@ -71,7 +95,33 @@ public class Assessment {
 	// superBlock("") ==> 0
 
 	public int superBlock(String input) {
-		return -1;
+		
+		int counter = 0;//current block
+		int finalCounter = 0;//output
+		String c = "c";
+		
+			for (int i = 0; i < input.length(); i++)
+			{
+				
+				if (input.substring(i, i + 1).equals(c)) 
+				{
+					counter++; //This is when it equals
+				}
+				else
+				{
+					c = input.substring(i, i + 1); //set current string to c	
+				}
+				
+				//compare counters
+				if (counter > finalCounter) 
+				{
+					finalCounter = counter;
+					counter = 0;
+				}
+			}
+			
+		
+		return finalCounter;
 
 	}
 
@@ -84,8 +134,34 @@ public class Assessment {
 	// amISearch("I am in Amsterdam am I?") ==> 2
 	// amISearch("I have been in Amsterdam") ==> 0
 
-	public int amISearch(String arg1) {
-		return -1;
+	public int amISearch(String arg1) 
+	{
+		
+		String lowerArg = arg1.toLowerCase();
+		int counter = 0;
+		for (int i = 0; i < lowerArg.length(); i++)
+		{
+			if (i == 0)
+			{
+				if (lowerArg.substring(i, i + 2).equals("am") && lowerArg.substring(i+2, i+3).equals(" ")) 
+				{
+					counter++;
+					System.out.println(counter);
+				}
+			}
+			
+			else if (i > 0 && i < lowerArg.length() - 3)
+			{
+				if (lowerArg.substring(i, i + 2).equals("am") && lowerArg.substring(i - 1, i).equals(" ") && lowerArg.substring(i+2, i+3).equals(" "))
+				{
+				 counter++;
+				}
+			}
+			System.out.println(counter);
+		}
+
+
+		return counter;
 
 	}
 
@@ -132,7 +208,37 @@ public class Assessment {
 	// largest("15 72 80 164") ==> 11
 	// largest("555 72 86 45 10") ==> 15
 
+	
 	public int largest(String arg1) {
-		return -1;
+		// This method splits the string and sums the numbers, trying to split mulitple numbers in the same string
+		
+		int sum = 0;//what gets returned
+		int largestSum = 0;
+
+		for (int j = 0; j < arg1.length(); j++) {
+			
+			if (arg1.substring(j, j + 1).equals(" ")) 
+			{
+				sum = 0;
+			}
+			else
+			{
+				
+				int newNum = Integer.parseInt(arg1.substring(j, j + 1));
+				sum += newNum;
+				
+			}
+			
+			if (sum > largestSum) {
+				largestSum = sum;
+			}
+
+			
+			
+		}
+
+		return largestSum;
 	}
+	
+	
 }
